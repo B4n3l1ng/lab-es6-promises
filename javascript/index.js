@@ -50,6 +50,7 @@ getInstruction(
 
 // Iteration 1 - using callbacks
 // ...
+const mashedPotatoesImage = document.querySelector("#mashedPotatoesImg");
 getInstruction(
   "mashedPotatoes",
   0,
@@ -74,6 +75,7 @@ getInstruction(
             document.querySelector(
               "#mashedPotatoes"
             ).innerHTML += `<li>Mashed potatoes are ready!</li>`;
+            mashedPotatoesImage.removeAttribute("hidden");
           });
         });
       });
@@ -83,6 +85,7 @@ getInstruction(
 );
 // Iteration 2 - using promises
 // ...
+const steakImage = document.querySelector("#steakImg");
 obtainInstruction("steak", 0)
   .then((step0) => {
     document.querySelector("#steak").innerHTML += `<li>${step0}</li>`;
@@ -122,33 +125,37 @@ obtainInstruction("steak", 0)
       document.querySelector("#steak").innerHTML += `<li>${step7}</li>`;
     })
   )
-  .then(
-    () => (document.querySelector("#steak").innerHTML += `<li>Steak is ready!`)
-  );
+  .finally(() => {
+    document.querySelector("#steak").innerHTML += `<li>Steak is ready!</li>`;
+    steakImage.removeAttribute("hidden");
+  });
 
 // Iteration 3 using async/await
 // ...
+
+const broccoliImage = document.querySelector("#broccoliImg");
 async function makeBroccoli() {
   try {
     let instruction = await obtainInstruction("broccoli", 0);
-    document.querySelector("#broccoli").innerHTML += `<li>${instruction}`;
+    document.querySelector("#broccoli").innerHTML += `<li>${instruction}</li>`;
     instruction = await obtainInstruction("broccoli", 1);
-    document.querySelector("#broccoli").innerHTML += `<li>${instruction}`;
+    document.querySelector("#broccoli").innerHTML += `<li>${instruction}</li>`;
     instruction = await obtainInstruction("broccoli", 2);
-    document.querySelector("#broccoli").innerHTML += `<li>${instruction}`;
+    document.querySelector("#broccoli").innerHTML += `<li>${instruction}</li>`;
     instruction = await obtainInstruction("broccoli", 3);
-    document.querySelector("#broccoli").innerHTML += `<li>${instruction}`;
+    document.querySelector("#broccoli").innerHTML += `<li>${instruction}</li>`;
     instruction = await obtainInstruction("broccoli", 4);
-    document.querySelector("#broccoli").innerHTML += `<li>${instruction}`;
+    document.querySelector("#broccoli").innerHTML += `<li>${instruction}</li>`;
     instruction = await obtainInstruction("broccoli", 5);
-    document.querySelector("#broccoli").innerHTML += `<li>${instruction}`;
+    document.querySelector("#broccoli").innerHTML += `<li>${instruction}</li>`;
     instruction = await obtainInstruction("broccoli", 6);
-    document.querySelector("#broccoli").innerHTML += `<li>${instruction}`;
+    document.querySelector("#broccoli").innerHTML += `<li>${instruction}</li>`;
     document.querySelector(
       "#broccoli"
     ).innerHTML += `<li>Broccoli is ready!</li>`;
-  } catch (err) {
-    console.log(err);
+    broccoliImage.removeAttribute("hidden");
+  } catch (error) {
+    console.log(error);
   }
 }
 makeBroccoli();
