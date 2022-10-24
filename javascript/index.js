@@ -71,6 +71,9 @@ getInstruction(
             document.querySelector(
               "#mashedPotatoes"
             ).innerHTML += `<li>${step4}</li>`;
+            document.querySelector(
+              "#mashedPotatoes"
+            ).innerHTML += `<li>Mashed potatoes are ready!</li>`;
           });
         });
       });
@@ -118,6 +121,9 @@ obtainInstruction("steak", 0)
     obtainInstruction("steak", 7).then((step7) => {
       document.querySelector("#steak").innerHTML += `<li>${step7}</li>`;
     })
+  )
+  .then(
+    () => (document.querySelector("#steak").innerHTML += `<li>Steak is ready!`)
   );
 
 // Iteration 3 using async/await
